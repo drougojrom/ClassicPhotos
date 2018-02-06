@@ -86,10 +86,12 @@
         
         if (error != nil) {
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Oops!" message:@"Something wrong has happenned" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:NULL];
+            [alertController addAction:cancelAction];
+            
             [self presentViewController:alertController animated:YES completion:NULL];
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
-        
     }];
     
     [task resume];
@@ -148,6 +150,50 @@
     [self.pendingOperations.filtrationQueue addOperation:imageFiltration];
 }
 
+- (void)suspendAllOperations
+{
+    self.pendingOperations.downloadQueue.suspended = YES;
+    self.pendingOperations.filtrationQueue.suspended = YES;
+}
+
+- (void)resumeAllOperations
+{
+    self.pendingOperations.downloadQueue.suspended = NO;
+    self.pendingOperations.filtrationQueue.suspended = NO;
+}
+
+- (void)loadImagesForOnscreenCells
+{
+    NSArray *pathsArray = [self.tableView indexPathsForVisibleRows];
+    NSMutableSet *allPendingOperations = [[NSMutableSet alloc] initWithObjects:
+                                          self.pendingOperations.downloadInProgress.allKeys,
+                                          self.pendingOperations.filtrationsInProgress.allKeys,
+                                          nil];
+    NSMutableSet *toBeCancelled = allPendingOperations;
+    NSSet *visiblePaths = [[NSSet alloc] initWithArray:pathsArray];
+    [toBeCancelled minusSet: visiblePaths];
+    
+    NSMutableSet *toBeStarted = [[NSMutableSet alloc] initWithSet:visiblePaths];
+    [toBeStarted minusSet:allPendingOperations];
+    
+    for (NSIndexPath *indexPath in toBeCancelled) {
+        if (self.pendingOperations.downloadInProgress[indexPath]) {
+            [self.pendingOperations.downloadInProgress[indexPath] cancel];
+        }
+        [self.pendingOperations.downloadInProgress removeObjectForKey:indexPath];
+        
+        if (self.pendingOperations.filtrationsInProgress[indexPath]) {
+            [self.pendingOperations.filtrationsInProgress[indexPath] cancel];
+        }
+        [self.pendingOperations.filtrationsInProgress removeObjectForKey:indexPath];
+    }
+    
+    for (NSIndexPath *indexPath in toBeStarted) {
+        PhotoOperations *photo = self.photos[indexPath.row];
+        [self startOperationsForPhotoRecord:photo forIndexPath:indexPath];
+    }
+}
+
 #pragma mark - Table view data source
 
 
@@ -178,10 +224,33 @@
             cell.textLabel.text = @"Failed to download";
         default:
             [indicator startAnimating];
-            [self startOperationsForPhotoRecord:photo forIndexPath:indexPath];
+            if (!self.tableView.isDragging && !self.tableView.isDecelerating) {
+                [self startOperationsForPhotoRecord:photo forIndexPath:indexPath];
+            }
             break;
     }
     return cell;
+}
+
+#pragma mark scrollView delegate
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self suspendAllOperations];
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate) {
+        [self loadImagesForOnscreenCells];
+        [self resumeAllOperations];
+    }
+}
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenCells];
+    [self resumeAllOperations];
 }
 
 @end
