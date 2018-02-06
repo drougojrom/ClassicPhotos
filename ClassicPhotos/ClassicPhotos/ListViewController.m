@@ -26,7 +26,7 @@
     [super viewDidLoad];
     
     self.title = @"Classic photos";
-    dataSourceURL = [NSURL URLWithString:@"http://www.raywenderlich.com/downloads/ClassicPhotosDictionary.plist"];
+    dataSourceURL = [NSURL URLWithString:@"https://downloader.disk.yandex.ru/disk/3b8af8432d91d308003d635c00711bb23492f891288414e5d05696000cacbe3e/5a7a252b/JqMBTVVtvJtbq3PoGeGT-wwwmOpvvN50J9aU6boglqPB_aTdUoBSrd50kBbB8bc6_e8j94vPyKeMN-nOSgWVew%3D%3D?uid=0&filename=ClassicPhotosDictionary.plist&disposition=attachment&hash=E1BjlPRnKPurWDJfS7Tb7N9xu6Xd/wRYgBQjKEk2VMM%3D&limit=0&content_type=text%2Fxml&fsize=3646&hid=d23e4931804fad202ae6a63af10ac30c&media_type=settings&tknv=v2"];
     [self fetchPhotoDetails];
 }
 
