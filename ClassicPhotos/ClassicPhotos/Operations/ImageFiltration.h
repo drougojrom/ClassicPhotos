@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PhotoOperations.h"
+#import "PhotoRecord.h"
 #import "RecordState.h"
 
 @interface ImageFiltration : NSOperation
 
-@property (nonatomic, assign) PhotoOperations *photoRecord;
+@property (nonatomic, assign) PhotoRecord *photoRecord;
 
-- (instancetype)initWithRecord:(PhotoOperations *)record;
+- (instancetype)initWithRecord:(PhotoRecord *)record;
 
 @end

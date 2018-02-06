@@ -76,7 +76,7 @@
             [datasourceDictionary enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSString *value, BOOL * _Nonnull stop) {
                 NSString *name = key;
                 NSURL *url = [NSURL URLWithString:value];
-                PhotoOperations *record = [[PhotoOperations alloc] initWithUrl:name :url];
+                PhotoRecord *record = [[PhotoRecord alloc] initWithUrl:name :url];
                 [self.photos addObject:record];
             }];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -98,7 +98,7 @@
     [session finishTasksAndInvalidate];
 }
 
-- (void)startOperationsForPhotoRecord:(PhotoOperations *)photo forIndexPath:(NSIndexPath *)indexPath
+- (void)startOperationsForPhotoRecord:(PhotoRecord *)photo forIndexPath:(NSIndexPath *)indexPath
 {
     if (photo.state == New) {
         [self startDownloadForRecord:photo forIndexPath:indexPath];
@@ -109,7 +109,7 @@
     }
 }
 
-- (void)startDownloadForRecord:(PhotoOperations *)photo forIndexPath:(NSIndexPath *)indexPath
+- (void)startDownloadForRecord:(PhotoRecord *)photo forIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pendingOperations.downloadInProgress[indexPath]) {
         return;
@@ -130,7 +130,7 @@
     [self.pendingOperations.downloadQueue addOperation:imageDownloader];
 }
 
-- (void)startFiltrationForRecord:(PhotoOperations *)photo forIndexPath:(NSIndexPath *)indexPath
+- (void)startFiltrationForRecord:(PhotoRecord *)photo forIndexPath:(NSIndexPath *)indexPath
 {
     if (self.pendingOperations.filtrationsInProgress[indexPath]) {
         return;
@@ -189,7 +189,7 @@
     }
     
     for (NSIndexPath *indexPath in toBeStarted) {
-        PhotoOperations *photo = self.photos[indexPath.row];
+        PhotoRecord *photo = self.photos[indexPath.row];
         [self startOperationsForPhotoRecord:photo forIndexPath:indexPath];
     }
 }
@@ -211,7 +211,7 @@
         cell.accessoryView = indicator;
     }
     
-    PhotoOperations *photo = self.photos[indexPath.row];
+    PhotoRecord *photo = self.photos[indexPath.row];
     cell.textLabel.text = photo.name;
     cell.imageView.image = photo.image;
     

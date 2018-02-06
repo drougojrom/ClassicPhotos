@@ -11,7 +11,7 @@
 
 @implementation ImageFiltration
 
-- (instancetype)initWithRecord:(PhotoOperations *)record
+- (instancetype)initWithRecord:(PhotoRecord *)record
 {
     self = [super init];
     
