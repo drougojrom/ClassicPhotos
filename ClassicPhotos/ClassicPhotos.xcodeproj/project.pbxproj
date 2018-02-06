@@ -15,7 +15,7 @@
 		E0F7D9E62029D18200D83BE6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F7D9E52029D18200D83BE6 /* CoreImage.framework */; };
 		E0F7D9EA2029D20100D83BE6 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F7D9E92029D20100D83BE6 /* ListViewController.m */; };
 		E0F7D9ED2029D92100D83BE6 /* PendingOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F7D9EC2029D92100D83BE6 /* PendingOperations.m */; };
-		E0F7D9F02029D95400D83BE6 /* PhotoOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F7D9EF2029D95400D83BE6 /* PhotoOperations.m */; };
+		E0F7D9F02029D95400D83BE6 /* PhotoRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F7D9EF2029D95400D83BE6 /* PhotoRecord.m */; };
 		E0F7D9F42029DE1B00D83BE6 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F7D9F32029DE1B00D83BE6 /* ImageDownloader.m */; };
 		E0F7D9F82029E86700D83BE6 /* ImageFiltration.m in Sources */ = {isa = PBXBuildFile; fileRef = E0F7D9F72029E86700D83BE6 /* ImageFiltration.m */; };
 /* End PBXBuildFile section */
@@ -34,8 +34,8 @@
 		E0F7D9E92029D20100D83BE6 /* ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		E0F7D9EB2029D92100D83BE6 /* PendingOperations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PendingOperations.h; sourceTree = "<group>"; };
 		E0F7D9EC2029D92100D83BE6 /* PendingOperations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PendingOperations.m; sourceTree = "<group>"; };
-		E0F7D9EE2029D95400D83BE6 /* PhotoOperations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoOperations.h; sourceTree = "<group>"; };
-		E0F7D9EF2029D95400D83BE6 /* PhotoOperations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoOperations.m; sourceTree = "<group>"; };
+		E0F7D9EE2029D95400D83BE6 /* PhotoRecord.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoRecord.h; sourceTree = "<group>"; };
+		E0F7D9EF2029D95400D83BE6 /* PhotoRecord.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoRecord.m; sourceTree = "<group>"; };
 		E0F7D9F22029DE1B00D83BE6 /* ImageDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
 		E0F7D9F32029DE1B00D83BE6 /* ImageDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 		E0F7D9F52029E18200D83BE6 /* RecordState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordState.h; sourceTree = "<group>"; };
@@ -112,8 +112,8 @@
 				E0F7D9F32029DE1B00D83BE6 /* ImageDownloader.m */,
 				E0F7D9F62029E86700D83BE6 /* ImageFiltration.h */,
 				E0F7D9F72029E86700D83BE6 /* ImageFiltration.m */,
-				E0F7D9EE2029D95400D83BE6 /* PhotoOperations.h */,
-				E0F7D9EF2029D95400D83BE6 /* PhotoOperations.m */,
+				E0F7D9EE2029D95400D83BE6 /* PhotoRecord.h */,
+				E0F7D9EF2029D95400D83BE6 /* PhotoRecord.m */,
 				E0F7D9EB2029D92100D83BE6 /* PendingOperations.h */,
 				E0F7D9EC2029D92100D83BE6 /* PendingOperations.m */,
 				E0F7D9F52029E18200D83BE6 /* RecordState.h */,
@@ -195,7 +195,7 @@
 				E0F7D9F42029DE1B00D83BE6 /* ImageDownloader.m in Sources */,
 				E0F7D99D2029190C00D83BE6 /* main.m in Sources */,
 				E0F7D9F82029E86700D83BE6 /* ImageFiltration.m in Sources */,
-				E0F7D9F02029D95400D83BE6 /* PhotoOperations.m in Sources */,
+				E0F7D9F02029D95400D83BE6 /* PhotoRecord.m in Sources */,
 				E0F7D98F2029190C00D83BE6 /* AppDelegate.m in Sources */,
 				E0F7D9EA2029D20100D83BE6 /* ListViewController.m in Sources */,
 				E0F7D9ED2029D92100D83BE6 /* PendingOperations.m in Sources */,

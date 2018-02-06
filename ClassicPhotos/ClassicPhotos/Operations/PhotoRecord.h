@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "RecordState.h"
 
-@interface PhotoOperations : NSObject
+@interface PhotoRecord : NSObject
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSURL *url;

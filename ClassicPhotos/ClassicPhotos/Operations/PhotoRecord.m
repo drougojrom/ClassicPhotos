@@ -6,13 +6,13 @@
 //  Copyright © 2018 Roman Ustiantcev. All rights reserved.
 //
 
-#import "PhotoOperations.h"
+#import "PhotoRecord.h"
 
-@interface PhotoOperations ()
+@interface PhotoRecord ()
 
 @end
 
-@implementation PhotoOperations
+@implementation PhotoRecord
 
 - (instancetype)initWithUrl:(NSString *)name :(NSURL *)url
 {

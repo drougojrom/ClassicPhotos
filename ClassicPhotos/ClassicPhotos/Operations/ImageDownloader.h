@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PhotoOperations.h"
+#import "PhotoRecord.h"
 #import "RecordState.h"
 
 @interface ImageDownloader : NSOperation
 
-@property (nonatomic, weak) PhotoOperations *photoRecord;
+@property (nonatomic, weak) PhotoRecord *photoRecord;
 
-- (instancetype)initWithRecord:(PhotoOperations *)record;
+- (instancetype)initWithRecord:(PhotoRecord *)record;
 
 @end

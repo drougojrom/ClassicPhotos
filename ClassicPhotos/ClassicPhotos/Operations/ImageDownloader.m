@@ -10,7 +10,7 @@
 
 @implementation ImageDownloader
 
-- (instancetype)initWithRecord:(PhotoOperations *)record
+- (instancetype)initWithRecord:(PhotoRecord *)record
 {
     self = [super init];
     

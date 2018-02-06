@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PhotoOperations.h"
+#import "PhotoRecord.h"
 #import "PendingOperations.h"
 
 @interface ListViewController : UITableViewController
